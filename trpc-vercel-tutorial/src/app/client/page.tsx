@@ -20,12 +20,12 @@ import { useEffect } from "react";
 
 
 export default function Page() {
-  const hello = trpc.hello.useQuery();
+  const res = trpc.hello.useQuery({ text: "galickho!"});
   // const dataSet = await trpc.setData("test-data")
   
   return (
     <main>
-        <div>{hello?.data?.greeting}</div>
+        <div>{res?.data?.greeting}</div>
         {/* <div>{dataSet}</div> */}
     </main>
   )
