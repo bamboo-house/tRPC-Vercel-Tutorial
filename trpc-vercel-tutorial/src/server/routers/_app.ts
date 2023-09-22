@@ -2,17 +2,25 @@ import { z } from 'zod';
 import { procedure, router } from '../trpc';
 
 export const appRouter = router({
-  hello: procedure
+  sayHello: procedure
   .input(
     z.object({
       text: z.string(),
     })
     )
   .query((opts) => {
-    return {
-      greeting: `hello ${opts.input.text}!`,
-    };
+    return  `hello ${opts.input.text}!`
   }),
+  setHello: procedure
+  .input(
+    z.object({
+      text: z.string(),
+    })
+    )
+  .mutation((opts) => {
+    console.log(opts.input.text)
+    return `set hello ${opts.input.text}!`
+  })
 });
 
 export type AppRouter = typeof appRouter;
