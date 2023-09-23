@@ -1,9 +1,12 @@
-import Head from 'next/head';
-import React, { use, useEffect, useState } from 'react';
+"use client"
 
-export default function Home() {
+import { useEffect, useState } from 'react';
+
+export default function Page() {
+  const [dataa, setData] = useState(null);
   useEffect(() => {
     sampe();
+    console.log(dataa);
   }, []);
 
   const sampe = async () => {
@@ -16,11 +19,13 @@ export default function Home() {
     // レスポンスをJSONとしてパース
     const data = await response.json();
     console.log(data);
+    setData({...data});
   };
 
   return (
-    <>
+    <main>
       <h1>Test</h1>
-    </>
+      <div>{JSON.stringify(dataa)}</div>
+    </main>
   );
 }
